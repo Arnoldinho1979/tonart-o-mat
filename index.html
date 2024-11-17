@@ -23,8 +23,20 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
+    h1, h2 {
+      margin: 0;
+    }
+
     h1 {
-      font-size: 24px;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: normal;
+      margin-top: 0;
       margin-bottom: 20px;
     }
 
@@ -35,7 +47,6 @@
     #statement-text {
       font-size: 18px;
       margin-bottom: 20px;
-      transition: opacity 0.5s ease;
     }
 
     #answers button {
@@ -65,83 +76,101 @@
   </style>
 </head>
 <body>
-  <div id="game-container" style="text-align: center; width: 300px; margin: auto;">
-  <h1 style="font-size: 32px; font-weight: bold; margin-bottom: 5px;">TONART-O-MAT</h1>
-  <h2 style="font-size: 18px; font-weight: normal; margin-top: 0;">Welche Tonart passt zu dir?</h2>
+  <div id="game-container">
+    <h1>Tonart-O-Mat</h1>
+    <h2>Welche Tonart passt zu dir?</h2>
     <div id="statement-container">
       <p id="statement-text">Hier erscheint das erste Statement.</p>
     </div>
     <div id="answers">
-      <button id="yes-btn">Ja</button>
-      <button id="no-btn">Nein</button>
-      <button id="idk-btn">Weiß nicht</button>
+      <button data-value="1">Ja</button>
+      <button data-value="2">Nein</button>
+      <button data-value="3">Weiß nicht</button>
     </div>
     <div id="result">
-      <p id="result-text">Am Ende wirst du hier dein Ergebnis sehen.</p>
+      <p id="result-text"></p>
     </div>
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Statements
+      // Statements und Antworten
       const statements = [
         "01 Hier erscheint das erste Statement.",
         "02 Hier erscheint das zweite Statement.",
         "03 Hier erscheint das dritte Statement.",
-        "04 Hier erscheint das dritte Statement.",
-        "05 Hier erscheint das dritte Statement.",
-        "06 Hier erscheint das dritte Statement.",
-        "07 Hier erscheint das dritte Statement.",
-        "08 Hier erscheint das dritte Statement.",
-        "09 Hier erscheint das dritte Statement.",
-        "10 Hier erscheint das dritte Statement.",
-        "11 Hier erscheint das dritte Statement.",
-        "12 Hier erscheint das dritte Statement.",
-        "13 Hier erscheint das dritte Statement.",
-        "14 Hier erscheint das dritte Statement.",
-        "15 Hier erscheint das dritte Statement.",
-        "16 Hier erscheint das dritte Statement.",
-        "17 Hier erscheint das dritte Statement.",
-        "18 Hier erscheint das dritte Statement.",
-        "19 Hier erscheint das dritte Statement.",
-        "20 Hier erscheint das dritte Statement.",
-        "21 Hier erscheint das dritte Statement.",
-        "22 Hier erscheint das dritte Statement.",
-        "23 Hier erscheint das dritte Statement.",
-        "24 Hier erscheint das dritte Statement.",
-        
+        "04 Hier erscheint das vierte Statement.",
+        "05 Hier erscheint das fünfte Statement.",
+        "06 Hier erscheint das sechste Statement.",
+        "07 Hier erscheint das siebte Statement.",
+        "08 Hier erscheint das achte Statement.",
+        "09 Hier erscheint das neunte Statement.",
+        "10 Hier erscheint das zehnte Statement.",
+        "11 Hier erscheint das elfte Statement.",
+        "12 Hier erscheint das zwölfte Statement.",
+        "13 Hier erscheint das dreizehnte Statement.",
+        "14 Hier erscheint das vierzehnte Statement.",
+        "15 Hier erscheint das fünfzehnte Statement.",
+        "16 Hier erscheint das sechzehnte Statement.",
+        "17 Hier erscheint das siebzehnte Statement.",
+        "18 Hier erscheint das achtzehnte Statement.",
+        "19 Hier erscheint das neunzehnte Statement.",
+        "20 Hier erscheint das zwanzigste Statement.",
+        "21 Hier erscheint das einundzwanzigste Statement.",
+        "22 Hier erscheint das zweiundzwanzigste Statement.",
+        "23 Hier erscheint das dreiundzwanzigste Statement.",
+        "24 Hier erscheint das vierundzwanzigste Statement.",
       ];
 
       let currentIndex = 0;
+      const answers = [];
 
       const statementText = document.getElementById("statement-text");
       const buttons = document.querySelectorAll("#answers button");
       const resultDiv = document.getElementById("result");
+      const resultText = document.getElementById("result-text");
 
-      // Update statement text
+      // Zeige ein Statement
       function showStatement(index) {
         if (index < statements.length) {
-          statementText.style.opacity = 0;
-          setTimeout(() => {
-            statementText.textContent = statements[index];
-            statementText.style.opacity = 1;
-          }, 500);
+          statementText.textContent = statements[index];
         } else {
-          // End of statements
-          document.getElementById("statement-container").style.display = "none";
-          document.getElementById("answers").style.display = "none";
-          resultDiv.style.display = "block";
+          // Ergebnis berechnen
+          calculateResult();
         }
       }
 
-      // Add event listeners to buttons
+      // Ergebnis berechnen
+      function calculateResult() {
+        document.getElementById("statement-container").style.display = "none";
+        document.getElementById("answers").style.display = "none";
+        resultDiv.style.display = "block";
+
+        // Zähle die Häufigkeit der Antworten
+        const frequency = answers.reduce((acc, value) => {
+          acc[value] = (acc[value] || 0) + 1;
+          return acc;
+        }, {});
+
+        // Häufigste Antwort finden
+        const maxValue = Object.keys(frequency).reduce((a, b) =>
+          frequency[a] > frequency[b] ? a : b
+        );
+
+        // Ergebnis anzeigen
+        resultText.textContent = `Dein Ergebnis: Du hast die meisten Übereinstimmungen mit der Kategorie ${maxValue}.`;
+      }
+
+      // Button-Klicks verarbeiten
       buttons.forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (e) => {
+          const value = e.target.getAttribute("data-value");
+          answers.push(value); // Antwort speichern
           currentIndex++;
           showStatement(currentIndex);
         });
       });
 
-      // Initialize with the first statement
+      // Starte mit dem ersten Statement
       showStatement(currentIndex);
     });
   </script>
