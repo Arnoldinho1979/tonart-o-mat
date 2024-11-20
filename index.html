@@ -1,171 +1,193 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tonart-O-Mat</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-
-    #game-container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    #statement-container {
-      margin-bottom: 20px;
-    }
-
-    #statement-text {
-      font-size: 18px;
-      margin-bottom: 20px;
-      transition: opacity 0.5s ease;
-    }
-
-    #answers button {
-      font-size: 16px;
-      margin: 5px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      background-color: #007bff;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    #answers button:hover {
-      background-color: #0056b3;
-    }
-
-    #result {
-      display: none;
-    }
-
-    #result-text {
-      font-size: 18px;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TONART-O-MAT</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #d8f3dc;
+            background-image: url('https://raw.githubusercontent.com/Arnoldinho1979/find-your-personal-key/main/Tonart-O-Mat-Hintergrund.png'); /* Füge hier die URL zum Bild ein */
+            background-size: cover; /* Das Bild wird auf die ganze Seite skaliert */
+            background-position: center; /* Das Bild wird in der Mitte ausgerichtet */
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: -8px;
+        }
+        h2 {
+            text-align: center;
+            margin-top: -2px;
+            margin-bottom: 19px;
+            width: 60%;
+            font-weight: normal;
+        }
+        .statement {
+            margin: 20px;
+            font-size: 24px;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Abstand zwischen den Buttons */
+        }
+        .button {
+            padding: 20px 40px; /* Mehr Innenabstand (größerer Button) */
+            font-size: 1.5em; /* Größere Schriftgröße */
+            width: 200px; /* Feste Breite für die Buttons */
+            background-color: #d8f3dc; /* Hintergrundfarbe */
+            border: none;
+            border-radius: 8px; /* Abgerundete Ecken */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff6f61; /* Dunklere Hintergrundfarbe beim Hover */
+        }
+        /* Neue Klasse für den Ergebnisbereich */
+        .result-text {
+            text-align: center;
+            width: 50%; /* Text nimmt die Hälfte der Seite ein */
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-  <div id="game-container" style="text-align: center; width: 300px; margin: auto;">
-  <h1 style="font-size: 31px; font-weight: bold; margin-bottom: 5px;">TONART-O-MAT</h1>
-  <h2 style="font-size: 18px; font-weight: normal; margin-top: 0;">Welche Tonart passt zu dir?</h2>
-    <div id="statement-container">
-      <p id="statement-text">Hier erscheint das erste Statement.</p>
-    </div>
-    <div id="answers">
-      <button id="yes-btn">Ja</button>
-      <button id="no-btn">Nein</button>
-      <button id="idk-btn">Weiß nicht</button>
-    </div>
-    <div id="result">
-      <p id="result-text">Am Ende wirst du hier dein Ergebnis sehen.</p>
-    </div>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Statements
-      const statements = [
-        "01 Hier erscheint das erste Statement.",
-        "02 Hier erscheint das zweite Statement.",
-        "03 Hier erscheint das dritte Statement.",
-        "04 Hier erscheint das dritte Statement.",
-        "05 Hier erscheint das dritte Statement.",
-        "06 Hier erscheint das dritte Statement.",
-        "07 Hier erscheint das dritte Statement.",
-        "08 Hier erscheint das dritte Statement.",
-        "09 Hier erscheint das dritte Statement.",
-        "10 Hier erscheint das dritte Statement.",
-        "11 Hier erscheint das dritte Statement.",
-        "12 Hier erscheint das dritte Statement.",
-        "13 Hier erscheint das dritte Statement.",
-        "14 Hier erscheint das dritte Statement.",
-        "15 Hier erscheint das dritte Statement.",
-        "16 Hier erscheint das dritte Statement.",
-        "17 Hier erscheint das dritte Statement.",
-        "18 Hier erscheint das dritte Statement.",
-        "19 Hier erscheint das dritte Statement.",
-        "20 Hier erscheint das dritte Statement.",
-        "21 Hier erscheint das dritte Statement.",
-        "22 Hier erscheint das dritte Statement.",
-        "23 Hier erscheint das dritte Statement.",
-        "24 Hier erscheint das dritte Statement.",
+<h1 style="text-align: center; font-size: 3em; margin-bottom: 0px; width: 100%">TONART-O-MAT</h1>
+<h2 style="text-align: center; margin-top: 5px; margin-bottom: 19px; width: 60%; font-weight: normal; font-size: 15px;">Welche Tonart passt zu mir?</h2>
+
+<div class="statement" id="question"></div>
+<div class="button-container">
+    <button class="button" onclick="answer(1)">Ja</button>
+    <button class="button" onclick="answer(2)">Nein</button>
+    <button class="button" onclick="answer(3)">Weiß nicht</button>
+</div>
+
+<script>
+    const statements = [
+        "01 Apfelsaft trinke ich immer kristallklar, nie naturtrüb!",
+        "02 Statement.",
+        "03 Statement.",
+        "04 Statement.",
+        "05 Statement.",
+        "06 Statement.",
+        "07 Statement.",
+        "08 Statement.",
+        "09 Statement.",
+        "10 Statement.",
+        "11 Statement.",
+        "12 Statement.",
+        "13 Statement.",
+        "14 Statement.",
+        "15 Statement.",
+        "16 Statement.",
+        "17 Statement.",
+        "18 Statement.",
+        "19 Statement.",
+        "20 Statement.",
+        "21 Statement.",
+        "22 Statement.",
+        "23 Statement.",
+        "24 Statement."
+    ];
+
+    const tonart = {
+        "C-Dur": {
+            scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            text: "Längere Beschreibung für C-Dur: Hier kannst du den Text einfügen, der zu dieser Tonart passt. Dies kann eine tiefere Analyse oder interessante Hinweise zu C-Dur sein, die deine Nutzer hilfreich finden werden."
+        },
+        "c-Moll": {
+            scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            text: "Längere Beschreibung für c-Moll: Hier kannst du mehr über c-Moll erzählen. Dies könnte eine detaillierte Erklärung dieser Tonart, ihre Verwendung und Stimmung beinhalten."
+        },
+        "D-Dur": {
+            scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            text: "D-Dur ist eine helle, kraftvolle Tonart, die oft in feierlichen und positiven Kontexten verwendet wird. Sie symbolisiert Stärke und Hoffnung."
+        },
+        // Weitere Tonarten hier
+    };
+
+    let currentQuestion = 0;
+    let userResponses = [];
+
+    function displayQuestion() {
+        const questionElement = document.getElementById("question");
+        questionElement.style.opacity = 0;
         
-      ];
+        setTimeout(() => {
+            questionElement.textContent = statements[currentQuestion];
+            questionElement.style.opacity = 1;
+        }, 500);
+    }
 
-      let currentIndex = 0;
-const answers = []; // Array, um die Antworten zu speichern
-const statementText = document.getElementById("statement-text");
-const buttons = document.querySelectorAll("#answers button");
-const resultDiv = document.getElementById("result");
-const resultText = document.getElementById("result-text");
+    function answer(response) {
+        userResponses.push(response);
+        currentQuestion++;
+        
+        if (currentQuestion < statements.length) {
+            displayQuestion();
+        } else {
+            showResult();
+        }
+    }
 
-// Update statement text
-function showStatement(index) {
-  if (index < statements.length) {
-    statementText.style.opacity = 0;
-    setTimeout(() => {
-      statementText.textContent = statements[index];
-      statementText.style.opacity = 1;
-    }, 500);
-  } else {
-    calculateResult(); // Ergebnis berechnen
-  }
-}
+    function showResult() {
+        let result = determineResult();
+        document.getElementById("question").innerHTML = `
+            Am besten passt zu dir ... ...<br><br>${result.tonart}<br><br>
+            <div class="result-text">${result.text}</div>
+        `;
+        document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
+    }
 
-// Ergebnis berechnen
-function calculateResult() {
-  document.getElementById("statement-container").style.display = "none";
-  document.getElementById("answers").style.display = "none";
-  resultDiv.style.display = "block";
+    function determineResult() {
+        let bestTonart = null;
+        let bestScore = -1;
 
-  // Zähle die Häufigkeit der Antworten
-  const frequency = answers.reduce((acc, value) => {
-    acc[value] = (acc[value] || 0) + 1;
-    return acc;
-  }, {});
+        for (let tonartName in tonart) {
+            const { scores } = tonart[tonartName];
+            let score = 0;
 
-  // Häufigste Antwort finden
-  const maxValue = Object.keys(frequency).reduce((a, b) =>
-    frequency[a] > frequency[b] ? a : b
-  );
+            let minLength = Math.min(userResponses.length, scores.length);
+            for (let i = 0; i < minLength; i++) {
+                if (userResponses[i] === scores[i]) {
+                    score++;
+                }
+            }
 
-  // Ergebnis anzeigen
-  resultText.textContent = `Dein Ergebnis: Du hast die meisten Übereinstimmungen mit der Kategorie ${maxValue}.`;
-}
+            if (score > bestScore) {
+                bestScore = score;
+                bestTonart = tonartName; // Bestens passender Tonartname
+            }
+        }
 
-// Add event listeners to buttons
-buttons.forEach(button => {
-  button.addEventListener("click", (e) => {
-    const value = e.target.getAttribute("data-value");
-    answers.push(value); // Antwort speichern
-    currentIndex++;
-    showStatement(currentIndex);
-  });
-});
+        if (bestTonart === null) {
+            return { tonart: "BWV 147", text: "Dies ist ein Standardtext, der angezeigt wird, wenn keine passende Tonart gefunden wird." }; // Standard-Tonart
+        }
 
-// Initialize with the first statement
-showStatement(currentIndex);
+        return { tonart: bestTonart, text: tonart[bestTonart].text }; // Beste Tonart und Beschreibung
+    }
 
-    });
-  </script>
+    displayQuestion();
+</script>
+<div class="footer"><br><br>
+    <p>&copy; Made by <a href="https://arnoluecker.de" target="_blank">Arno Lücker</a> 2024</p>
+</div>
+
 </body>
 </html>
