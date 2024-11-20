@@ -14,21 +14,22 @@
             height: 100vh;
             margin: 0;
             background-color: #d8f3dc;
-            background-image: url('https://raw.githubusercontent.com/Arnoldinho1979/find-your-personal-key/main/Tonart-O-Mat-Hintergrund.png'); /* Füge hier die URL zum Bild ein */
-            background-size: cover; /* Das Bild wird auf die ganze Seite skaliert */
-            background-position: center; /* Das Bild wird in der Mitte ausgerichtet */
+            background-image: url('https://raw.githubusercontent.com/Arnoldinho1979/find-your-personal-key/main/Tonart-O-Mat-Hintergrund.png'); 
+            background-size: cover;
+            background-position: center;
         }
         h1 {
             text-align: center;
             font-size: 3em;
-            margin-bottom: -8px;
+            margin-bottom: 0px;
         }
         h2 {
             text-align: center;
-            margin-top: -2px;
+            margin-top: 5px;
             margin-bottom: 19px;
             width: 60%;
             font-weight: normal;
+            font-size: 15px;
         }
         .statement {
             margin: 20px;
@@ -40,36 +41,39 @@
         .button-container {
             display: flex;
             flex-direction: column;
-            gap: 10px; /* Abstand zwischen den Buttons */
+            gap: 10px;
         }
         .button {
-            padding: 20px 40px; /* Mehr Innenabstand (größerer Button) */
-            font-size: 1.5em; /* Größere Schriftgröße */
-            width: 200px; /* Feste Breite für die Buttons */
-            background-color: #d8f3dc; /* Hintergrundfarbe */
+            padding: 20px 40px;
+            font-size: 1.5em;
+            width: 200px;
+            background-color: #d8f3dc;
             border: none;
-            border-radius: 8px; /* Abgerundete Ecken */
+            border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         .button:hover {
-            background-color: #ff6f61; /* Dunklere Hintergrundfarbe beim Hover */
+            background-color: #ff6f61;
         }
-        /* Neue Klasse für den Ergebnisbereich */
         .result-text {
             text-align: center;
-            width: 50%; /* Text nimmt die Hälfte der Seite ein */
-            margin: 20px auto;
+            width: 50%;
+            margin: 0 auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        iframe {
+            display: block;
+            margin: 20px auto;
         }
     </style>
 </head>
 <body>
-<h1 style="text-align: center; font-size: 3em; margin-bottom: 0px; width: 100%">TONART-O-MAT</h1>
-<h2 style="text-align: center; margin-top: 5px; margin-bottom: 19px; width: 60%; font-weight: normal; font-size: 15px;">Welche Tonart passt zu mir?</h2>
+<h1>TONART-O-MAT</h1>
+<h2>Welche Tonart passt zu mir?</h2>
 
 <div class="statement" id="question"></div>
 <div class="button-container">
@@ -107,19 +111,11 @@
     ];
 
     const tonart = {
-        "C-Dur": {
-            scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            text: "Längere Beschreibung für C-Dur: Hier kannst du den Text einfügen, der zu dieser Tonart passt. Dies kann eine tiefere Analyse oder interessante Hinweise zu C-Dur sein, die deine Nutzer hilfreich finden werden."
-        },
-        "c-Moll": {
-            scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-            text: "Längere Beschreibung für c-Moll: Hier kannst du mehr über c-Moll erzählen. Dies könnte eine detaillierte Erklärung dieser Tonart, ihre Verwendung und Stimmung beinhalten."
-        },
-        "D-Dur": {
-            scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-            text: "D-Dur ist eine helle, kraftvolle Tonart, die oft in feierlichen und positiven Kontexten verwendet wird. Sie symbolisiert Stärke und Hoffnung."
-        },
-        // Weitere Tonarten hier
+        "C-Dur!": {
+            text: `Du wirst oft verkannt und als ein bisschen oberflächlich missverstanden, dabei kannst du durchaus »ernst, aber dumpf und trübe« sein (Hector Berlioz, 1844), wie der Apfelsaft in deinem Glas, der eher nicht kristallklar daherkommt. Laut Christian Friedrich Daniel Schubart, der seine »Ideen zu einer Ästhetik der Tonkunst« 1784 einem Mitgefangenen durch eine Wandritze diktierte, ist C-Dur »ganz rein. Sein Charakter heißt: Unschuld, Einfalt, Naivität, Kindersprache.« Aber laut gemäß Aussagen des Hamburgischen Tausendsassas Johann Mattheson (1713) kannst du … entschuldige: kann C-Dur (!) »ziemlich rüde« und »frech« sein. C-Dur spricht laut Ferdinand Gotthelf Hand (1837) »das Menschliche im Gefühl rein und sicher aus«. Laut drei berühmten Komponisten, die den Tonarten Farben zugeordnet haben, gehören zu C-Dur die Farben Weiß (Nikolai Rimski-Korsakow und Olivier Messiaen) und Rot (Alexander Skrjabin). Deine Tonart wird dem Sternzeichen Widder zugeschrieben – und das wohl berühmteste Stück in deiner Tonart ist der erste Satz (Allegro) der 1788 notierten Sonate für Klavier C-Dur KV 545 (»Sonata facile«) von Wolfgang Amadeus Mozart (1756–1791). Natürlich haben auch Komponistinnen – nicht »nur« Männer – Stücke in deiner ganz persönlichen Tonart geschrieben. Höre dir doch beispielsweise dieses großartige Werk an: das Klaviertrio C-Dur op. 29 (1910) der genialen kroatischen Komponistin Dora Pejačević (1885–1923)!`,
+            videoUrl: "https://www.youtube.com/embed/WUvop5RsCGg?si=tLAyHipCexvGFj9y"
+        }
+        // Weitere Tonarten hier...
     };
 
     let currentQuestion = 0;
@@ -128,7 +124,7 @@
     function displayQuestion() {
         const questionElement = document.getElementById("question");
         questionElement.style.opacity = 0;
-        
+
         setTimeout(() => {
             questionElement.textContent = statements[currentQuestion];
             questionElement.style.opacity = 1;
@@ -138,7 +134,7 @@
     function answer(response) {
         userResponses.push(response);
         currentQuestion++;
-        
+
         if (currentQuestion < statements.length) {
             displayQuestion();
         } else {
@@ -149,8 +145,10 @@
     function showResult() {
         let result = determineResult();
         document.getElementById("question").innerHTML = `
-            Am besten passt zu dir ... ...<br><br>${result.tonart}<br><br>
-            <div class="result-text">${result.text}</div>
+            Am besten passt zu dir ... ...<br><br><div class="result-text">
+            ${result.text}<br><br>
+            <iframe width="560" height="315" src="${result.videoUrl}" frameborder="0" allowfullscreen></iframe>
+            </div>
         `;
         document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
     }
@@ -172,20 +170,21 @@
 
             if (score > bestScore) {
                 bestScore = score;
-                bestTonart = tonartName; // Bestens passender Tonartname
+                bestTonart = tonartName;
             }
         }
 
         if (bestTonart === null) {
-            return { tonart: "BWV 147", text: "Dies ist ein Standardtext, der angezeigt wird, wenn keine passende Tonart gefunden wird." }; // Standard-Tonart
+            return { tonart: "BWV 147", videoUrl: tonart["BWV 147"].videoUrl }; // Standard-Tonart
         }
 
-        return { tonart: bestTonart, text: tonart[bestTonart].text }; // Beste Tonart und Beschreibung
+        return { tonart: bestTonart, text: tonart[bestTonart].text, videoUrl: tonart[bestTonart].videoUrl };
     }
 
     displayQuestion();
 </script>
-<div class="footer"><br><br>
+
+<div class="footer">
     <p>&copy; Made by <a href="https://arnoluecker.de" target="_blank">Arno Lücker</a> 2024</p>
 </div>
 
