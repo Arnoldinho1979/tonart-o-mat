@@ -65,6 +65,37 @@
             border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
+        @media (max-width: 768px) { /* Für Bildschirme bis 768px Breite */
+    body {
+        height: auto; /* Flexibilität bei der Höhe */
+        padding: 20px; /* Vermeidung von Randabschneidungen */
+    }
+    h1 {
+        font-size: 2em; /* Kleinere Schriftgröße */
+    }
+    h2 {
+        font-size: 1em;
+        width: 90%; /* Breiter auf kleineren Geräten */
+    }
+    .statement {
+        font-size: 18px; /* Kleinere Schrift */
+        margin: 10px;
+    }
+    .button-container {
+        gap: 5px; /* Weniger Abstand zwischen Buttons */
+    }
+    .button {
+        font-size: 1em; /* Kleinere Buttons */
+        width: 100%; /* Buttons über die gesamte Breite */
+        padding: 15px; /* Angemessene Größe für Touch-Geräte */
+    }
+    .result-text {
+        width: 90%; /* Breiter auf Mobilgeräten */
+        font-size: 14px; /* Kleinere Schrift */
+    }
+    .footer {
+        font-size: 0.8em; /* Kleinere Schrift im Footer */
+    }
     </style>
 </head>
 <body>
