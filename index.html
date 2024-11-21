@@ -55,6 +55,10 @@
         .button:hover {
             background-color: #ff6f61; /* Dunklere Hintergrundfarbe beim Hover */
         }
+        .hidden {
+    display: none;
+}
+
         /* Neue Klasse für den Ergebnisbereich */
         .result-text {
             text-align: center;
@@ -221,12 +225,14 @@
 </div>
 <div style="position: fixed; bottom: 20px; width: 100%; text-align: center;">
     <button 
-        class="button" 
+        id="retryButton" 
+        class="button hidden" 
         style="background-color: #6c757d; color: white;" 
         onclick="location.reload();">
         Noch einmal!
     </button>
 </div>
+
 
 </body>
 </html>
