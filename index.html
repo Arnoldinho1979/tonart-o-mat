@@ -182,13 +182,17 @@
     }
 
     function showResult() {
-        let result = determineResult();
-        document.getElementById("question").innerHTML = `
-            Am besten passt zu dir ... ...<br><br>${result.tonart}<br><br>
-            <div class="result-text">${result.text}</div>
-        `;
-        document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
-    }
+    let result = determineResult();
+    document.getElementById("question").innerHTML = `
+        Am besten passt zu dir ... ...<br><br>${result.tonart}<br><br>
+        <div class="result-text">${result.text}</div>
+    `;
+    document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
+
+    // "Noch einmal!"-Button sichtbar machen
+    document.getElementById("retryButton").classList.remove("hidden");
+}
+
 
     function determineResult() {
         let bestTonart = null;
