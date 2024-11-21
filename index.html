@@ -190,7 +190,9 @@
     document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
 
     // "Noch einmal!"-Button sichtbar machen
-    document.getElementById("retryButton").classList.remove("hidden");
+    const retryButton = document.getElementById("retryButton");
+    console.log(retryButton); // Debug: Prüfen, ob das Element korrekt gefunden wird
+    retryButton.classList.remove("hidden");
 }
 
 
