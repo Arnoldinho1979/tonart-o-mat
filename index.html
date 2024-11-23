@@ -15,8 +15,8 @@
             margin: 0;
             background-color: #d8f3dc;
             background-image: url('https://raw.githubusercontent.com/Arnoldinho1979/find-your-personal-key/main/Tonart-O-Mat-Hintergrund.png'); /* Füge hier die URL zum Bild ein */
-            background-size: cover; /* Das Bild wird auf die ganze Seite skaliert */
-            background-position: center; /* Das Bild wird in der Mitte ausgerichtet */
+            background-size: cover;
+            background-position: center;
         }
         h1 {
             text-align: center;
@@ -40,71 +40,70 @@
         .button-container {
             display: flex;
             flex-direction: column;
-            gap: 10px; /* Abstand zwischen den Buttons */
+            gap: 10px;
         }
         .button {
-            padding: 20px 40px; /* Mehr Innenabstand (größerer Button) */
-            font-size: 1.5em; /* Größere Schriftgröße */
-            width: 200px; /* Feste Breite für die Buttons */
-            background-color: #d8f3dc; /* Hintergrundfarbe */
+            padding: 20px 40px;
+            font-size: 1.5em;
+            width: 200px;
+            background-color: #d8f3dc;
             border: none;
-            border-radius: 8px; /* Abgerundete Ecken */
+            border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         .button:hover {
-            background-color: #ff6f61; /* Dunklere Hintergrundfarbe beim Hover */
+            background-color: #ff6f61;
         }
         .hidden {
     display: none;
 }
 
-        /* Neue Klasse für den Ergebnisbereich */
         .result-text {
             text-align: center;
-            width: 50%; /* Text nimmt die Hälfte der Seite ein */
+            width: 50%;
             margin: 20px auto;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
-        @media (max-width: 768px) { /* Für Bildschirme bis 768px Breite */
+        @media (max-width: 768px) {
             @media (max-width: 768px) {
     .button {
-        border: 2px solid #ff6f61; /* Sichtbare Umrandung für Mobilgeräte */
+        border: 2px solid #ff6f61;
     }
 }
     body {
-        height: auto; /* Flexibilität bei der Höhe */
-        padding: 20px; /* Vermeidung von Randabschneidungen */
-        background-image: none; /* Hintergrundbild deaktivieren */
+        height: auto;
+        padding: 20px;
+        background-image: none;
     }
     h1 {
-        font-size: 2em; /* Kleinere Schriftgröße */
+        font-size: 2em;
     }
     h2 {
         font-size: 1em;
-        width: 90%; /* Breiter auf kleineren Geräten */
+        width: 90%;
     }
     .statement {
-        font-size: 18px; /* Kleinere Schrift */
+        font-size: 18px;
         margin: 10px;
     }
     .button-container {
-        gap: 5px; /* Weniger Abstand zwischen Buttons */
+        gap: 5px;
     }
     .button {
-        font-size: 1em; /* Kleinere Buttons */
-        width: 100%; /* Buttons über die gesamte Breite */
-        padding: 15px; /* Angemessene Größe für Touch-Geräte */
+        font-size: 1em;
+        width: 100%;
+        padding: 15px;
     }
     .result-text {
-        width: 90%; /* Breiter auf Mobilgeräten */
-        font-size: 14px; /* Kleinere Schrift */
+        width: 90%;
+        font-size: 14px;
     }
     .footer {
-        font-size: 0.8em; /* Kleinere Schrift im Footer */
+        font-size: 0.8em;
     }
     </style>
 </head>
@@ -297,7 +296,7 @@
 
             if (score > bestScore) {
                 bestScore = score;
-                bestTonart = tonartName; // Bestens passender Tonartname
+                bestTonart = tonartName;
             }
         }
 
@@ -305,7 +304,7 @@
             return { tonart: "BWV 147", text: "Dies ist ein Standardtext, der angezeigt wird, wenn keine passende Tonart gefunden wird." }; // Standard-Tonart
         }
 
-        return { tonart: bestTonart, text: tonart[bestTonart].text }; // Beste Tonart und Beschreibung
+        return { tonart: bestTonart, text: tonart[bestTonart].text };
     }
 
     displayQuestion();
