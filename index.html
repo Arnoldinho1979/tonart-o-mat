@@ -38,9 +38,10 @@
             transition: opacity 0.5s ease;
         }
         .button-container {
+            margin-top: 20px;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            flex-direction: center;
+            gap: 20px;
         }
         .button {
             padding: 20px 40px;
@@ -277,6 +278,13 @@
     `;
     document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
 }
+function restartQuiz() {
+    location.reload(); // Seite neu laden
+}
+
+function goBack() {
+    window.history.back(); // Zur vorherigen Seite zurück
+}
 
 
     function determineResult() {
@@ -309,6 +317,10 @@
 
     displayQuestion();
 </script>
+    <div class="button-container-footer">
+    <button class="button" onclick="restartQuiz()">Neustart</button>
+    <button class="button" onclick="goBack()">Zurück</button>
+</div>
     <div class="footer"><br><br>
     <p>&copy; Created by <a href="https://arnoluecker.de" target="_blank">Arno Lücker</a> in 2024 for <a href="https://van-magazin.de/" target="_blank">VAN Magazin</p>
 </div>
